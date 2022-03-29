@@ -1,50 +1,61 @@
-package com.bridgelabzunorderdlist;
+package orderedList;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Scanner;
 
-public class UnOrderedList<K> {
+
+
+public class OrdereList<K> {
     
 	private K k;
 	Node head;
 	static int size;
-	public UnOrderedList(K k) {
+	public OrdereList(K k) {
 		this.k = k;
 		linkedList();
 	}
 
 
-	private String[] readFileString(String filename) {
-		String[] words;
+	private Integer[] readFileIntegers(String filename) {
+		Integer[] integers;
 		String text = "";
 		try {
 			Scanner s = new Scanner(new File(filename));
 			while(s.hasNextLine()) {
-				text = text + s.next() + " ";
+				text = text + s.next() + ",";
 			}
 		}
 		catch(FileNotFoundException e) {
 			System.out.println("File not found");
 		}
-		words = text.split(",");
-		return words;
+		String[] integersArray = text.split(",");
+		integers = new Integer[integersArray.length];
+		int index =0;
+		for(String integer: integersArray) {
+			integers[index] = Integer.parseInt(integer);
+			index++;
+		}
+		return integers;
 	}
 	
-	public void linkedList() {
+	private void linkedList() {
 		
-		String fileName = "E:\\RFP_java\\Day16-17_AlgorithmProgram\\src\\com\\bridgelabz\\unorderedlist\\example.txt";
-		String[] words = readFileString(fileName);
-		for(String word: words) {
+		String fileName = "E:\\RFP_java\\Day16-17_AlgorithmProgram\\src\\orderedlist\\example.txt";
+		Integer[] integers = readFileIntegers(fileName);
+		for(Integer integer: integers) {
 			if(head == null) {
-				head = new Node(word);
+				head = new Node(integer);
 			}
 			else {
 			Node currNode = head;
 			while(currNode.next !=null) {
 				currNode = currNode.next;
 			}
-			 currNode.next = new Node(word);
+			 currNode.next = new Node(integer);
 			}
 		}
 			
@@ -59,19 +70,25 @@ public class UnOrderedList<K> {
 	
 	public boolean search() {
 		if (isEmpty()) {
+			int a = (int)k;
+			addFirst(a);
 			return false;
 		}
 		Node currNode = head;
-		while (currNode.data.hashCode() != ((String)k).hashCode()) {
+		while (currNode.data != k) {
 			if (currNode.next == null) {
+				int a = (int)k;
+				addFirst(a);
 				return false;
 			}
 			currNode = currNode.next;
 		}
+		int a = (int)k;
+		delete(a);
 		return true;
 	}
 	
-	public boolean search(String data) {
+	public boolean search(Integer data) {
 		if (isEmpty()) {
 			return false;
 		}
@@ -84,7 +101,7 @@ public class UnOrderedList<K> {
 		}
 		return true;
 	}
-	public void addFirst(String data) {
+	public void addFirst(Integer data) {
 		Node newNode = new Node(data);
 		if (isEmpty()) {
 			head = newNode;
@@ -95,7 +112,7 @@ public class UnOrderedList<K> {
 		head = newNode;
 	}
     
-	public void append(String data) {
+	public void append(Integer data) {
 		Node newNode = new Node(data);
 		if (isEmpty()) {
 			head = newNode;
@@ -133,7 +150,7 @@ public class UnOrderedList<K> {
 		currNode.next = null;
 	}
 	
-	public void delete(String data) {
+	public void delete(Integer data) {
 		if(search(data)) {
 			size--;
 			if(head.data == data) {
@@ -150,7 +167,7 @@ public class UnOrderedList<K> {
 		}
 	}
 
-	public void insertAfter(String element, String data) {
+	public void insertAfter(Integer element, Integer data) {
 		Node currNode = head;
 		if (search(element)) {
 			while (currNode.data != element) {
@@ -162,9 +179,30 @@ public class UnOrderedList<K> {
 			node1.next = temp;
 		}
 	}
-
-	public void insertBetween(String element1, String element2, String data) {
+	public void ascOrder() {
+		if(isEmpty()) {
+			return;
+		}
+		int exchanged =1;
+		while(exchanged != 0) {
+			Node currNode = head;
+			exchanged = 0;
+			while(currNode.next != null) {
+				if(currNode.data > currNode.next.data) {
+					int temp =currNode.next.data;
+					currNode.next.data = currNode.data;
+					currNode.data = temp;
+		            exchanged++;   
+				}
+				currNode = currNode.next;
+			}
+			
+		}
+	}
+	public void insertBetween(Integer element1, Integer element2, Integer data) {
 		if (head == null || head.next == null) {
+			// System.out.println("List contain only one element. So data can't be inserted
+			// between one number.");
 			return;
 		}
 
@@ -183,6 +221,33 @@ public class UnOrderedList<K> {
 		}
 	}
 	
+	public void show() {
+		if (isEmpty()) {
+			System.out.println("List is empty.");
+			return;
+		}
+		Node currNode = head;
+		while (currNode != null) {
+			System.out.print(currNode.data + "  ");
+			currNode = currNode.next;
+			}
+	}
+	
+	public void fileWrite() {
+		File file = new File("E:\\RFP_java\\Day16-17_AlgorithmProgram\\src\\orderedlist\\example.txt");
+		try {
+			FileWriter fw = new FileWriter(file);
+			PrintWriter pw = new PrintWriter(fw);
+			Node currNode = head;
+			while (currNode != null) {
+				pw.print(currNode.data + ",");
+				currNode = currNode.next;
+			}
+			pw.close();
+		} catch (IOException e) {
+			System.out.println("File not found");
+		}
+	}
 	
 }
 
