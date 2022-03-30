@@ -1,4 +1,4 @@
-package orderedList;
+package com.bridgelabz.orderedlist;
 
 public class Node<K> {
 	Node next;

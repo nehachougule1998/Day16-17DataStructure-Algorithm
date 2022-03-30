@@ -1,4 +1,4 @@
-package orderedList;
+package com.bridgelabz.orderedlist;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -44,7 +44,7 @@ public class OrdereList<K> {
 	
 	private void linkedList() {
 		
-		String fileName = "E:\\RFP_java\\Day16-17_AlgorithmProgram\\src\\orderedlist\\example.txt";
+		String fileName = "C:\\Users\\SR COMPUTER\\Documents\\BridzeLabs\\RFP\\Day16-17\\src\\com\\bridgelabz\\orderedlist\\example.txt";
 		Integer[] integers = readFileIntegers(fileName);
 		for(Integer integer: integers) {
 			if(head == null) {
@@ -230,11 +230,12 @@ public class OrdereList<K> {
 		while (currNode != null) {
 			System.out.print(currNode.data + "  ");
 			currNode = currNode.next;
-			}
+		}
+		// System.out.println("Null");
 	}
 	
 	public void fileWrite() {
-		File file = new File("E:\\RFP_java\\Day16-17_AlgorithmProgram\\src\\orderedlist\\example.txt");
+		File file = new File("C:\\Users\\SR COMPUTER\\Documents\\BridzeLabs\\RFP\\Day16-17\\src\\com\\bridgelabz\\orderedlist\\example.txt");
 		try {
 			FileWriter fw = new FileWriter(file);
 			PrintWriter pw = new PrintWriter(fw);
@@ -250,4 +251,3 @@ public class OrdereList<K> {
 	}
 	
 }
-
