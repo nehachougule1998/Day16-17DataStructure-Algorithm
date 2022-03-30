@@ -1,4 +1,4 @@
-package com.bridgelabz;
+package com.bridgelabz.primenumber;
 
 import java.util.Scanner;
 
@@ -27,4 +27,3 @@ public class PrimeNumber {
 		return true;
 	}
 }
-

@@ -1,10 +1,10 @@
-package com.bridgelabz;
+package com.bridgelabz.bubblesort;
 
 public class BubbleSort {
 
-public static void main(String[] args) {
+	public static void main(String[] args) {
 		
-		int[] list = {23,13,6,2,3,65};
+		int[] list = {12,78,9,2,3,45};
 		BubbleSort.sortList(list);
 	}
 
@@ -32,4 +32,3 @@ public static void main(String[] args) {
 	}
 
 }
-

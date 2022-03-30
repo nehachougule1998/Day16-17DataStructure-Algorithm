@@ -1,4 +1,4 @@
-package com.bridgelabz;
+package com.bridgelabz.permutationstring;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,9 +22,13 @@ public class PermutationOfString {
                 // remove current partial permutation from the ArrayList
                 String s = partial.remove(j);
  
-                   for (int k = 0; k <= s.length(); k++)
+                // Insert the next character of the specified string at all
+                // possible positions of current partial permutation. Then
+                // insert each of these newly constructed strings in the list
+ 
+                for (int k = 0; k <= s.length(); k++)
                 {
-                    
+                    // Advice: use StringBuilder for concatenation
                     partial.add(s.substring(0, k) + str.charAt(i) + s.substring(k));
                 }
             }
@@ -40,4 +44,3 @@ public class PermutationOfString {
         findPermutations(str);
     }
 }
-

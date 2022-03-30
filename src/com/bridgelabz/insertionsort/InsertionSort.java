@@ -1,8 +1,8 @@
-package com.bridgelabz;
+package com.bridgelabz.insertionsort;
 
 public class InsertionSort {
 
-public String[] sortArray(String array[], int n) {
+	public String[] sortArray(String array[], int n) {
 		
 		for(int i=1; i<array.length; i++) {
 			String temp = array[i];
@@ -24,7 +24,7 @@ public String[] sortArray(String array[], int n) {
 		
 		InsertionSort sort = new InsertionSort();
 		
-		String[] array = {"nikita","manali","neha","nilofar"};
+		String[] array = {"Jayesh","Nikita","Neha","Ashwini"};
 		System.out.println("Before insertion sort");
 		
 		for(int i=0; i<array.length; i++) {
@@ -37,4 +37,3 @@ public String[] sortArray(String array[], int n) {
 	}
 
 }
-

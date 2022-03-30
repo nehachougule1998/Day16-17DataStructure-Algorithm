@@ -1,4 +1,4 @@
-package com.bridgelabz;
+package com.bridgelabz.unorderedlist.anagramdetection;
 
 import java.util.Arrays;
 import java.util.Scanner;
@@ -27,8 +27,8 @@ public class Anagram {
 		}
 		int[] countarr = new int[256];
 		for(int i=0; i<word1.length(); i++) {
-			countarr[word.charAt(i)]++;           
-			countarr[word1.charAt(i)]--;           
+			countarr[word.charAt(i)]++;           //incrementing char of word
+			countarr[word1.charAt(i)]--;           //decrementing char of word
 		}
 		for (int j=0; j<countarr.length; j++) {
 			if(countarr[j] != 0) {
@@ -39,4 +39,3 @@ public class Anagram {
 	
 	}
 }
-
